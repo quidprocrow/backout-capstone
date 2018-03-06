@@ -2,6 +2,7 @@ const fillers = require('../fillers.js')
 const getFormFields = require('../../../lib/get-form-fields.js')
 const api = require('./api.js')
 const ui = require('./ui.js')
+const store = require('../store.js')
 
 const signInSubmit = function (event) {
   event.preventDefault()
@@ -15,9 +16,12 @@ const signInSubmit = function (event) {
 const signUpSubmit = function (event) {
   event.preventDefault()
   let data = getFormFields(event.target)
+  store.autoSignIn = data.credentials.password
   data = JSON.stringify(data)
   api.signUpUser(data)
-    .then(console.log)
+    .then(ui.onSignUpSuccess)
+    .then(api.signInUser)
+    .then(ui.onSignInSuccess)
     .catch(ui.onSignFailure)
 }
 

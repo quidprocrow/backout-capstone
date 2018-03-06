@@ -1,8 +1,19 @@
 const fillers = require('../fillers.js')
+const store = require('../store.js')
 
 const onSignInSuccess = function (data) {
   fillers.refresh()
+}
 
+const onSignUpSuccess = function (data) {
+  let dataPass = {
+    credentials: {
+      email: data.user.email,
+      password: store.autoSignIn
+    }
+  }
+  dataPass = JSON.stringify(dataPass)
+  return dataPass
 }
 
 const onSignFailure = function (data) {
@@ -16,5 +27,6 @@ const onSignFailure = function (data) {
 
 module.exports = {
   onSignFailure,
-  onSignInSuccess
+  onSignInSuccess,
+  onSignUpSuccess
 }
