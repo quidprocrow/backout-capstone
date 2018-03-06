@@ -8,8 +8,8 @@ const signInSubmit = function (event) {
   let data = getFormFields(event.target)
   data = JSON.stringify(data)
   api.signInUser(data)
-    .then(console.log)
-    .catch(console.error)
+    .then(ui.onSignInSuccess)
+    .catch(ui.onSignFailure)
 }
 
 const signUpSubmit = function (event) {
@@ -17,8 +17,8 @@ const signUpSubmit = function (event) {
   let data = getFormFields(event.target)
   data = JSON.stringify(data)
   api.signUpUser(data)
-    .then()
-    .catch(console.log('nay'))
+    .then(console.log)
+    .catch(ui.onSignFailure)
 }
 
 const addUserEventListeners = function () {

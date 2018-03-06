@@ -16,8 +16,6 @@ const showSignInForm = function () {
         </div>
         <button class="little-button" id="sign-in-form-button">SIGN IN</button>
       </form>
-      <div id="sign-error">
-      </div>
   `)
   $('#sign-forms').html(signHtml)
 }
@@ -37,8 +35,6 @@ const showSignUpForm = function () {
           </div>
           <button class="little-button" id="sign-up-form-button">SIGN UP</button>
           </form>
-          <div id="sign-error">
-          </div>
   `)
   $('#sign-forms').html(signHtml)
 }
