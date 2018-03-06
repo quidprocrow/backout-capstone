@@ -1,6 +1,7 @@
 
 const refresh = function () {
   $('#intro').hide()
+  $('#navigation').hide()
 }
 
 const showSignInForm = function () {

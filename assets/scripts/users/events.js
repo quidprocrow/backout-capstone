@@ -5,9 +5,19 @@ const ui = require('./ui.js')
 
 const signInSubmit = function (event) {
   event.preventDefault()
-  const data = getFormFields(event.target)
+  let data = getFormFields(event.target)
+  data = JSON.stringify(data)
   api.signInUser(data)
-    .then(console.log('yay'))
+    .then(console.log)
+    .catch(console.error)
+}
+
+const signUpSubmit = function (event) {
+  event.preventDefault()
+  let data = getFormFields(event.target)
+  data = JSON.stringify(data)
+  api.signUpUser(data)
+    .then()
     .catch(console.log('nay'))
 }
 
@@ -15,6 +25,7 @@ const addUserEventListeners = function () {
   $('#sign-in-button').on('click', fillers.showSignInForm)
   $('#sign-up-button').on('click', fillers.showSignUpForm)
   $('#sign-forms').on('submit', '#sign-in-form', signInSubmit)
+  $('#sign-forms').on('submit', '#sign-up-form', signUpSubmit)
   $('#navigation').hide()
 }
 

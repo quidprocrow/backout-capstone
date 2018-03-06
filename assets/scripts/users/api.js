@@ -7,6 +7,9 @@ const signInUser = function (data) {
   return $.ajax({
     url: config.apiOrigin + '/sign-in',
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
     data
   })
 }
@@ -15,6 +18,9 @@ const signUpUser = function (data) {
   return $.ajax({
     url: config.apiOrigin + '/sign-up',
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
     data
   })
 }
