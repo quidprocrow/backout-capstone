@@ -1,25 +1,57 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>backOUT</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags-->
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+      <!-- Google Fonts -->
+      <link href="https://fonts.googleapis.com/css?family=Cutive+Mono|Ubuntu+Mono" rel="stylesheet">
 
       <!-- Do not add `script` tags-->
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
-    <body class="container-fluid">
-      <h1>Example</h1>
+    <body>
+<!-- INTRO SECTION -->
+      <section id="intro">
+        <h1 id="game-title">back<span id="titlespan">OUT</span></h1>
+        <div class="center">
+          <p class="justify">
+            backOut is a story game, inspired by black out poetry and the choose your own adventure genre of games, about emphasis and what redaction means. The protagonist is a young woman who has made a mistake and hopes to correct it, magically; to play, choose from the available terms what she should be focusing on.
+          </p>
+          <button class="little-button" id="sign-in-button">SIGN IN</button>
+          <button class="little-button" id="sign-up-button">SIGN UP</button>
+        </div>
+        <div id="sign-forms" class="center">
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.</p>
+        </div>
+      </section>
+<!-- NAVIGATION SECTION -->
+            <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background: black;" id="navigation">
+              <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <img src="https://image.ibb.co/eTYBjw/tic_tac_toe_icon.png" alt="Toggle me!">
+              </button>
+              <a class="navbar-brand" href="#" id="greeting-space"><span class="user-greeting"></span></a>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">INSTRUCTIONS</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">GAMES</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">CHANGE PASS</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">SIGN OUT</a>
+                  </li>
+
+                </ul>
+              </div>
+            </nav>
+
     </body>
 </html>
