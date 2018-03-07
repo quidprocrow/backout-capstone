@@ -37,6 +37,18 @@ const showChangePass = function () {
   $('#user-message').html('')
 }
 
+const showNewGameForm = function () {
+  const newGameHtml = (`
+    <form id="new-game-form">
+      <div class="center">
+        <input type="text" name="game[mnemonic]" placeholder="NICKNAME FOR THIS GAME" class="input-field">
+      </div>
+      <button class="little-button" id="new-game-form-button">CONFIRM</button>
+    </form>
+    `)
+  $('#new-game-form-area').html(newGameHtml)
+}
+
 const showSignInForm = function () {
   const signHtml = (`
       <h2>SIGN IN</h2>
@@ -79,5 +91,6 @@ module.exports = {
   showInstructions,
   showIntro,
   showChangePass,
-  showManyGames
+  showManyGames,
+  showNewGameForm
 }
