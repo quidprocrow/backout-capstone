@@ -34,6 +34,12 @@ const changePassSubmit = function (event) {
     .catch(ui.changePassFailure)
 }
 
+const signOutClick = function () {
+  api.signOutUser()
+    .then(ui.signOutSuccess)
+    .catch(ui.signOutFailure)
+}
+
 const addUserEventListeners = function () {
   $('#sign-in-button').on('click', fillers.showSignInForm)
   $('#sign-up-button').on('click', fillers.showSignUpForm)
@@ -42,6 +48,7 @@ const addUserEventListeners = function () {
   $('#instructions-link').on('click', fillers.showInstructions)
   $('#change-password-link').on('click', fillers.showChangePass)
   $('#change-password-form').on('submit', changePassSubmit)
+  $('#sign-out-link').on('click', signOutClick)
 }
 
 module.exports = {

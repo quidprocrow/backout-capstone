@@ -52,10 +52,26 @@ const changePassFailure = function () {
   $('#user-message').html(errorHtml)
 }
 
+const signOutSuccess = function () {
+  delete store.user
+  fillers.showIntro()
+}
+
+const signOutFailure = function () {
+  const errorHtml = (`
+    <p class="message">
+    <b>Hmm.<b/> Something went wrong.
+    </p>
+    `)
+  $('#user-message').html(errorHtml)
+}
+
 module.exports = {
   onSignFailure,
   onSignInSuccess,
   onSignUpSuccess,
   changePassFailure,
-  changePassSuccess
+  changePassSuccess,
+  signOutSuccess,
+  signOutFailure
 }

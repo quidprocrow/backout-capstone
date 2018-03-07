@@ -5,6 +5,7 @@ const refresh = function () {
   $('#instructions').hide()
   $('#change-password').hide()
   $('#user-message').html('')
+  $('#sign-forms').html('')
 }
 
 const showIntro = function () {
