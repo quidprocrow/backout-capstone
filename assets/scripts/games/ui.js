@@ -17,36 +17,32 @@ const indexGamesSuccess = function (data) {
         <td class="table-top" width="75px">
         WISDOM
         </td>
-        <td class="table-top" width="50px">
-        DELETE
-        </td>
-        <td class="table-top" width="50px">
-        EDIT
+        <td class="table-top" width="100px">
+        PLAY
         </td>
       </tr>
     `)
   $('#display-all-games').html(tableHtml)
   data.games.forEach((game, index) => {
-    const title = game.mnemonic.slice(0, 20)
+    const title = game.mnemonic.slice(0, 16)
     const gameHtml = (`
       <tr height="50px">
-        <td class="table-cell" width="212px" data-id="${game.id}">
-        ${title}
+        <td class="table-cell" width="221px" data-id="${game.id}">
+        ${title}<BR>
+        <span data-id="${game.id}" class="delete-game">X</span>
+        <span data-id="${game.id}" class="update-game"><B>?</B></span>
         </td>
-        <td class="table-cell" width="107px" data-id="${game.id}">
+        <td class="table-cell" width="111px" data-id="${game.id}">
         ${game.sentences.length}
         </td>
-        <td class="table-cell" width="79px" data-id="${game.id}">
+        <td class="table-cell" width="83px" data-id="${game.id}">
         ${game.hope}
         </td>
-        <td class="table-cell" width="80px" data-id="${game.id}">
+        <td class="table-cell" width="83px" data-id="${game.id}">
         ${game.wisdom}
         </td>
-        <td class="table-cell" width="76px">
-        <span data-id="${game.id}" class="delete-game"><B>X</B></span>
-        </td>
-        <td class="table-cell" width="55px">
-        <span data-id="${game.id}" class="update-game"><B>?</B></span>
+        <td class="table-cell" width="111px">
+        <span data-id="${game.id}" class="play-game">GO</span>
         </td>
       </tr>
       `)

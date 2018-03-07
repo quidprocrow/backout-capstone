@@ -4,6 +4,14 @@ const api = require('./api.js')
 const ui = require('./ui.js')
 const store = require('../store.js')
 
+const deleteGameClick = function (event) {
+  const id = $(event.target).data('id')
+  api.deleteGame(id)
+    .then(api.indexGames)
+    .then(ui.indexGamesSuccess)
+    .catch(ui.indexGamesFailure)
+}
+
 const newGameSubmit = function (event) {
   event.preventDefault()
   let data = getFormFields(event.target)
@@ -33,6 +41,7 @@ const addGamesEventListeners = function () {
   $('#game-link').on('click', gameLinkClick)
   $('#new-game-button').on('click', gameButtonClick)
   $('#new-game-form-area').on('submit', '#new-game-form', newGameSubmit)
+  $('#display-all-games').on('click', '.delete-game', deleteGameClick)
 }
 
 module.exports = {

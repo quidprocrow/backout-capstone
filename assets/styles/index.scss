@@ -186,13 +186,14 @@ p {
   margin: 50px auto;
 }
 
-.delete-game {
+.delete-game, .update-game, .play-game {
   background: black;
   color: white;
   display: inline-block;
   text-align: center;
   padding: 5px;
-
+  font-weight: bold;
+  min-width: 50px;
 }
 
 .table-top {
@@ -214,6 +215,8 @@ p {
   text-align: center;
   padding: 5px;
   border: 1px solid white;
+  min-height: 80px;
+  vertical-align: top;
 
 }
 
