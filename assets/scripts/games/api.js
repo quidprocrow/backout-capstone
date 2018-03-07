@@ -56,36 +56,10 @@ const updateGame = function (data) {
   })
 }
 
-const createSentence = function (data) {
-  return $.ajax({
-    url: config.apiOrigin + '/sentences/',
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: 'Token token=' + store.user.token
-    },
-    data
-  })
-}
-
-const createWord = function (data) {
-  return $.ajax({
-    url: config.apiOrigin + '/words/',
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: 'Token token=' + store.user.token
-    },
-    data
-  })
-}
-
 module.exports = {
   createGame,
   indexGames,
   deleteGame,
   showGame,
-  updateGame,
-  createSentence,
-  createWord
+  updateGame
 }
