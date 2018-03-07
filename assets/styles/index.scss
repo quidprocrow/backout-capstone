@@ -182,6 +182,41 @@ p {
   width: auto;
 }
 
+#new-game-form-area {
+  margin: 50px auto;
+}
+
+.delete-game {
+  background: black;
+  color: white;
+  display: inline-block;
+  text-align: center;
+  padding: 5px;
+
+}
+
+.table-top {
+  background: black;
+  color: white;
+  font-family: 'Ubuntu Mono';
+  font-size: 20px;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid white;
+}
+
+.table-cell {
+  background: white;
+  color: black;
+  font-family: 'Cutive Mono';
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid white;
+
+}
+
 // .change-pass-form
 // > .little-button {
 //   width: 300px;

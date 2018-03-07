@@ -9,6 +9,10 @@ const refresh = function () {
   $('#sign-forms').html('')
 }
 
+const tableFill = function () {
+
+}
+
 const showManyGames = function () {
   refresh()
   $('#navigation').show()
@@ -92,5 +96,6 @@ module.exports = {
   showIntro,
   showChangePass,
   showManyGames,
-  showNewGameForm
+  showNewGameForm,
+  tableFill
 }

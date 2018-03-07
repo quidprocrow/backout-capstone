@@ -13,6 +13,8 @@ const newGameSubmit = function (event) {
   data = JSON.stringify(data)
   api.createGame(data)
     .then(ui.createGameSuccess)
+    .then(api.indexGames)
+    .then(ui.indexGamesSuccess)
     .catch(ui.createGameFailure)
 }
 
