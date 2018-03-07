@@ -54,6 +54,7 @@ const changePassFailure = function () {
 
 const signOutSuccess = function () {
   delete store.user
+  delete store.currentGame
   fillers.showIntro()
 }
 
