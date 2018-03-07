@@ -27,9 +27,10 @@ const signUpUser = function (data) {
 
 const changePassUser = function (data) {
   return $.ajax({
-    url: config.apiOrigin + '/change-password/' + store.user.id,
+    url: config.apiOrigin + '/change-password/',
     method: 'PATCH',
     headers: {
+      'Content-Type': 'application/json',
       Authorization: 'Token token=' + store.user.token
     },
     data
@@ -41,6 +42,7 @@ const signOutUser = function () {
     url: config.apiOrigin + '/sign-out/' + store.user.id,
     method: 'DELETE',
     headers: {
+      'Content-Type': 'application/json',
       Authorization: 'Token token=' + store.user.token
     }
   })

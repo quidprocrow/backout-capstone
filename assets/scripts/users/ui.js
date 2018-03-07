@@ -34,8 +34,28 @@ const onSignFailure = function (data) {
   $('#sign-forms').html(errorHtml)
 }
 
+const changePassSuccess = function () {
+  const errorHtml = (`
+    <p class="message">
+    Well done.
+    </p>
+    `)
+  $('#user-message').html(errorHtml)
+}
+
+const changePassFailure = function () {
+  const errorHtml = (`
+    <p class="message">
+    <b>Hmm.<b/> Something went wrong.
+    </p>
+    `)
+  $('#user-message').html(errorHtml)
+}
+
 module.exports = {
   onSignFailure,
   onSignInSuccess,
-  onSignUpSuccess
+  onSignUpSuccess,
+  changePassFailure,
+  changePassSuccess
 }

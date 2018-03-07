@@ -4,7 +4,7 @@ const refresh = function () {
   $('#navigation').hide()
   $('#instructions').hide()
   $('#change-password').hide()
-  $('#error-message-section').hide()
+  $('#user-message').html('')
 }
 
 const showIntro = function () {
@@ -16,14 +16,14 @@ const showInstructions = function () {
   $('#navigation').show()
   $('#instructions').show()
   $('#error-message-section').show()
-  $('#error-message-section').html('')
+  $('#user-message').html('')
 }
 const showChangePass = function () {
   refresh()
   $('#navigation').show()
   $('#change-password').show()
   $('#error-message-section').show()
-  $('#error-message-section').html('')
+  $('#user-message').html('')
 }
 
 const showSignInForm = function () {
