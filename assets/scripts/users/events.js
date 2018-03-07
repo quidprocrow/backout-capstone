@@ -30,7 +30,7 @@ const addUserEventListeners = function () {
   $('#sign-up-button').on('click', fillers.showSignUpForm)
   $('#sign-forms').on('submit', '#sign-in-form', signInSubmit)
   $('#sign-forms').on('submit', '#sign-up-form', signUpSubmit)
-  $('#navigation').hide()
+  $('#instruction-link').on('click', fillers.showInstructions)
 }
 
 module.exports = {

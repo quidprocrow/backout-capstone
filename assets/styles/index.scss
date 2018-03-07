@@ -89,7 +89,7 @@ p {
 }
 
 .quote {
-  font-size: 25px;
+  font-size: 20px;
   margin: 0 auto 20px;
   text-align: center;
   width: 100%;
@@ -99,7 +99,16 @@ p {
 > p {
   margin: 5px 0px;
   padding: 0px;
+  font-family: 'Ubuntu Mono';
+  text-transform: uppercase;
 }
+
+.quote p b {
+  color: white;
+  background: black;
+  padding: 5px;
+}
+
 .little-button {
   background-color: $black;
   border: 0;
@@ -156,6 +165,11 @@ p {
 
 .navbar-nav {
   list-style-type: none;
+}
+
+.navbar-toggler img {
+  height: 30px;
+  width: auto;
 }
 
 // .change-pass-form

@@ -2,6 +2,17 @@
 const refresh = function () {
   $('#intro').hide()
   $('#navigation').hide()
+  $('#instructions').hide()
+}
+
+const showIntro = function () {
+  refresh()
+  $('#intro').show()
+}
+const showInstructions = function () {
+  refresh()
+  $('#navigation').show()
+  $('#instructions').show()
 }
 
 const showSignInForm = function () {
@@ -42,5 +53,7 @@ const showSignUpForm = function () {
 module.exports = {
   refresh,
   showSignInForm,
-  showSignUpForm
+  showSignUpForm,
+  showInstructions,
+  showIntro
 }

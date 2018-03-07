@@ -3,9 +3,11 @@
 const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
 const userEvents = require('./users/events.js')
+const fillers = require('./fillers.js')
 
 $(() => {
   setAPIOrigin(location, config)
+  fillers.showIntro()
   userEvents.addUserEventListeners()
 })
 

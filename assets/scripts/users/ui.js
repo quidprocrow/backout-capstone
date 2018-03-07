@@ -2,7 +2,7 @@ const fillers = require('../fillers.js')
 const store = require('../store.js')
 
 const onSignInSuccess = function (data) {
-  fillers.refresh()
+  fillers.showInstructions()
 }
 
 const onSignUpSuccess = function (data) {
