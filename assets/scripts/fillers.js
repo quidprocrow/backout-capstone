@@ -8,6 +8,7 @@ const refresh = function () {
   $('#user-message').html('')
   $('#sign-forms').html('')
   $('#new-game-form-area').html('')
+  $('#mnemonic-title').html('')
   $('#one-game').hide()
 }
 
@@ -17,6 +18,15 @@ const showManyGames = function () {
   $('#many-games').show()
   $('#error-message-section').show()
   $('#user-message').html('')
+}
+
+const showOneGame = function (data) {
+  refresh()
+  $('#navigation').show()
+  $('#one-game').show()
+  $('#error-message-section').show()
+  $('#user-message').html('')
+  $('#mnemonic-title').html(data.game.mnemonic)
 }
 
 const showIntro = function () {
@@ -173,5 +183,6 @@ module.exports = {
   showManyGames,
   showNewGameForm,
   showUpdateField,
-  tableFill
+  tableFill,
+  showOneGame
 }

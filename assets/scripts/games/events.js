@@ -4,6 +4,14 @@ const api = require('./api.js')
 const ui = require('./ui.js')
 const store = require('../store.js')
 
+const onPlayClick = function (event) {
+  console.log('it happen')
+  const id = $(event.target).data('id')
+  api.showGame(id)
+    .then(ui.showGameSuccess)
+    .catch(ui.showGameFailure)
+}
+
 // Takes the updated mnemonic and places it a copy of original game.
 const smooshUpdate = function (returnedData, formData) {
   returnedData.game.mnemonic = formData.game.mnemonic
@@ -79,6 +87,7 @@ const addGamesEventListeners = function () {
   $('#display-all-games').on('click', '.nvm', onNvmClick)
   $('#display-all-games').on('click', '.cnfrm', onCnfrmClick)
   $('#display-all-games').on('submit', '.update-game-form', onEditSubmit)
+  $('#display-all-games').on('click', '.play-game', onPlayClick)
 }
 
 module.exports = {
