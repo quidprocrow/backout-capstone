@@ -1,61 +1,16 @@
+const fillers = require('../fillers.js')
 
 const indexGamesSuccess = function (data) {
   $('#user-message').html('')
-  const halt = data.games.length - 1
-  const tableHtml = (`
-    <table class="center">
-      <tr>
-        <td class="table-top" width="200px">
-        MNEMONIC
-        </td>
-        <td class="table-top" width="50px">
-        SENTENCES
-        </td>
-        <td class="table-top" width="75px">
-        HOPE
-        </td>
-        <td class="table-top" width="75px">
-        WISDOM
-        </td>
-        <td class="table-top" width="100px">
-        PLAY
-        </td>
-      </tr>
-    `)
-  $('#display-all-games').html(tableHtml)
-  data.games.forEach((game, index) => {
-    const title = game.mnemonic.slice(0, 16)
-    const gameHtml = (`
-      <tr height="50px">
-        <td class="table-cell" width="221px" data-id="${game.id}">
-        <p class="mnemonic" data-mnemonic-update="${game.mnemonic}">${title}</p>
-
-        <span data-id="${game.id}" class="delete-game">X</span>
-        <span data-id="${game.id}" class="update-game">EDIT</span>
-
-        </td>
-        <td class="table-cell" width="111px" data-id="${game.id}">
-        ${game.sentences.length}
-        </td>
-        <td class="table-cell" width="83px" data-id="${game.id}">
-        ${game.hope}
-        </td>
-        <td class="table-cell" width="83px" data-id="${game.id}">
-        ${game.wisdom}
-        </td>
-        <td class="table-cell" width="111px">
-        <span data-id="${game.id}" class="play-game">GO</span>
-        </td>
-      </tr>
+  if (data.games.length > 0) {
+    fillers.tableFill(data)
+  } else {
+    $('#display-all-games').html('')
+    const noneHtml = (`
+      <p class="message">You have no games!</p>
       `)
-    $('#display-all-games').append(gameHtml)
-    if (index === halt) {
-      const endTableHtml = (`
-        </table>
-        `)
-      $('#display-all-games').append(endTableHtml)
-    }
-  })
+    $('#user-message').html(noneHtml)
+  }
 }
 
 const indexGamesFailure = function () {

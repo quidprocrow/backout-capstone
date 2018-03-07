@@ -22,6 +22,64 @@ const showIntro = function () {
   $('#intro').show()
 }
 
+const tableFill = function (data) {
+  const halt = data.games.length - 1
+  const tableHtml = (`
+    <table class="center">
+      <tr>
+        <td class="table-top" width="200px">
+        MNEMONIC
+        </td>
+        <td class="table-top" width="50px">
+        SENTENCES
+        </td>
+        <td class="table-top" width="75px">
+        HOPE
+        </td>
+        <td class="table-top" width="75px">
+        WISDOM
+        </td>
+        <td class="table-top" width="100px">
+        PLAY
+        </td>
+      </tr>
+    `)
+  $('#display-all-games').html(tableHtml)
+  data.games.forEach((game, index) => {
+    const title = game.mnemonic.slice(0, 16)
+    const gameHtml = (`
+      <tr height="50px">
+        <td class="table-cell" width="221px" data-id="${game.id}">
+        <p class="mnemonic" data-mnemonic-update="${game.mnemonic}">${title}</p>
+
+        <span data-id="${game.id}" class="delete-game">X</span>
+        <span data-id="${game.id}" class="update-game">EDIT</span>
+
+        </td>
+        <td class="table-cell" width="111px" data-id="${game.id}">
+        ${game.sentences.length}
+        </td>
+        <td class="table-cell" width="83px" data-id="${game.id}">
+        ${game.hope}
+        </td>
+        <td class="table-cell" width="83px" data-id="${game.id}">
+        ${game.wisdom}
+        </td>
+        <td class="table-cell" width="111px">
+        <span data-id="${game.id}" class="play-game">GO</span>
+        </td>
+      </tr>
+      `)
+    $('#display-all-games').append(gameHtml)
+    if (index === halt) {
+      const endTableHtml = (`
+        </table>
+        `)
+      $('#display-all-games').append(endTableHtml)
+    }
+  })
+}
+
 const showInstructions = function () {
   refresh()
   $('#navigation').show()
@@ -39,7 +97,7 @@ const showChangePass = function () {
 
 const showUpdateField = function (game, gameValue, id) {
   const inputHtml = (`
-    <form id="update-game-form">
+    <form class="update-game-form" data-id="${id}">
         <input type="text" name="game[mnemonic]" style="max-width: 200px" value="${gameValue}">
     </form>
     `)
@@ -112,5 +170,6 @@ module.exports = {
   showChangePass,
   showManyGames,
   showNewGameForm,
-  showUpdateField
+  showUpdateField,
+  tableFill
 }
