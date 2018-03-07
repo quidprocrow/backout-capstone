@@ -7,6 +7,8 @@ const refresh = function () {
   $('#many-games').hide()
   $('#user-message').html('')
   $('#sign-forms').html('')
+  $('#new-game-form-area').html('')
+  $('#one-game').hide()
 }
 
 const showManyGames = function () {
