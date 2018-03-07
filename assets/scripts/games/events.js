@@ -4,6 +4,18 @@ const api = require('./api.js')
 const ui = require('./ui.js')
 const store = require('../store.js')
 
+const onNvmClick = function () {
+  api.indexGames()
+    .then(ui.indexGamesSuccess)
+    .catch(ui.indexGamesFailure)
+}
+
+const updateGameClick = function (event) {
+  const id = $(event.target).data('id')
+  const gameValue = $(event.target).siblings('.mnemonic').data('mnemonic-update')
+  fillers.showUpdateField(event.target, gameValue, id)
+}
+
 const deleteGameClick = function (event) {
   const id = $(event.target).data('id')
   api.deleteGame(id)
@@ -42,6 +54,8 @@ const addGamesEventListeners = function () {
   $('#new-game-button').on('click', gameButtonClick)
   $('#new-game-form-area').on('submit', '#new-game-form', newGameSubmit)
   $('#display-all-games').on('click', '.delete-game', deleteGameClick)
+  $('#display-all-games').on('click', '.update-game', updateGameClick)
+  $('#display-all-games').on('click', '.nvm', onNvmClick)
 }
 
 module.exports = {

@@ -9,10 +9,6 @@ const refresh = function () {
   $('#sign-forms').html('')
 }
 
-const tableFill = function () {
-
-}
-
 const showManyGames = function () {
   refresh()
   $('#navigation').show()
@@ -39,6 +35,25 @@ const showChangePass = function () {
   $('#change-password').show()
   $('#error-message-section').show()
   $('#user-message').html('')
+}
+
+const showUpdateField = function (game, gameValue, id) {
+  const inputHtml = (`
+    <form id="update-game-form">
+        <input type="text" name="game[mnemonic]" style="max-width: 200px" value="${gameValue}">
+    </form>
+    `)
+  const confirmHtml = (`
+    <span data-id="${id}" class="cnfrm">CNFRM</span>
+    `)
+  const nevermindHtml = (`
+      <span data-id="${id}" class="nvm">NVM</span>
+      `)
+  $(game).siblings('.mnemonic').html(inputHtml)
+  $(game).siblings('.delete-game').hide()
+  $(game).hide()
+  $(game).parent().append(confirmHtml)
+  $(game).parent().append(nevermindHtml)
 }
 
 const showNewGameForm = function () {
@@ -97,5 +112,5 @@ module.exports = {
   showChangePass,
   showManyGames,
   showNewGameForm,
-  tableFill
+  showUpdateField
 }

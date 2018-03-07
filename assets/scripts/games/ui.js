@@ -28,9 +28,11 @@ const indexGamesSuccess = function (data) {
     const gameHtml = (`
       <tr height="50px">
         <td class="table-cell" width="221px" data-id="${game.id}">
-        ${title}<BR>
+        <p class="mnemonic" data-mnemonic-update="${game.mnemonic}">${title}</p>
+
         <span data-id="${game.id}" class="delete-game">X</span>
-        <span data-id="${game.id}" class="update-game"><B>?</B></span>
+        <span data-id="${game.id}" class="update-game">EDIT</span>
+
         </td>
         <td class="table-cell" width="111px" data-id="${game.id}">
         ${game.sentences.length}
