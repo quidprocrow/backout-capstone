@@ -4,14 +4,24 @@ const refresh = function () {
   $('#navigation').hide()
   $('#instructions').hide()
   $('#change-password').hide()
+  $('#many-games').hide()
   $('#user-message').html('')
   $('#sign-forms').html('')
+}
+
+const showManyGames = function () {
+  refresh()
+  $('#navigation').show()
+  $('#many-games').show()
+  $('#error-message-section').show()
+  $('#user-message').html('')
 }
 
 const showIntro = function () {
   refresh()
   $('#intro').show()
 }
+
 const showInstructions = function () {
   refresh()
   $('#navigation').show()
@@ -68,5 +78,6 @@ module.exports = {
   showSignUpForm,
   showInstructions,
   showIntro,
-  showChangePass
+  showChangePass,
+  showManyGames
 }

@@ -3,12 +3,14 @@
 const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
 const userEvents = require('./users/events.js')
+const gameEvents = require('./games/events.js')
 const fillers = require('./fillers.js')
 
 $(() => {
   setAPIOrigin(location, config)
   fillers.showIntro()
   userEvents.addUserEventListeners()
+  gameEvents.addGamesEventListeners()
 })
 
 // use require with a reference to bundle the file and use it in this file
