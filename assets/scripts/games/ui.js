@@ -1,6 +1,6 @@
 
-
 const indexGamesSuccess = function (data) {
+  $('#user-message').html('')
   const halt = data.games.length - 1
   const tableHtml = (`
     <table class="center">
@@ -27,12 +27,11 @@ const indexGamesSuccess = function (data) {
     `)
   $('#display-all-games').html(tableHtml)
   data.games.forEach((game, index) => {
-    console.log(game)
+    const title = game.mnemonic.slice(0, 20)
     const gameHtml = (`
       <tr height="50px">
-        <form>
         <td class="table-cell" width="212px" data-id="${game.id}">
-        ${game.mnemonic}
+        ${title}
         </td>
         <td class="table-cell" width="107px" data-id="${game.id}">
         ${game.sentences.length}
@@ -49,7 +48,6 @@ const indexGamesSuccess = function (data) {
         <td class="table-cell" width="55px">
         <span data-id="${game.id}" class="update-game"><B>?</B></span>
         </td>
-        </form>
       </tr>
       `)
     $('#display-all-games').append(gameHtml)
@@ -60,6 +58,15 @@ const indexGamesSuccess = function (data) {
       $('#display-all-games').append(endTableHtml)
     }
   })
+}
+
+const indexGamesFailure = function () {
+  const errorHtml = (`
+    <p class="message">
+    HMM. Something went wrong.
+    </p>
+    `)
+  $('#user-message').html(errorHtml)
 }
 
 const createGameSuccess = function (data) {
@@ -78,5 +85,6 @@ const createGameFailure = function (data) {
 module.exports = {
   createGameFailure,
   createGameSuccess,
-  indexGamesSuccess
+  indexGamesSuccess,
+  indexGamesFailure
 }

@@ -24,6 +24,9 @@ const gameButtonClick = function () {
 
 const gameLinkClick = function () {
   fillers.showManyGames()
+  api.indexGames()
+    .then(ui.indexGamesSuccess)
+    .catch(ui.indexGamesFailure)
 }
 
 const addGamesEventListeners = function () {
