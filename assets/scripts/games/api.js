@@ -45,9 +45,21 @@ const showGame = function (id) {
   })
 }
 
+const updateGame = function (data) {
+  return $.ajax({
+    url: config.apiOrigin + '/games/' + data.game.id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data
+  })
+}
+
 module.exports = {
   createGame,
   indexGames,
   deleteGame,
-  showGame
+  showGame,
+  updateGame
 }

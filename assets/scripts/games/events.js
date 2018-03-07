@@ -4,13 +4,21 @@ const api = require('./api.js')
 const ui = require('./ui.js')
 const store = require('../store.js')
 
+// Takes the updated mnemonic and places it a copy of original game.
+const smooshUpdate = function (returnedData, formData) {
+  returnedData.game.mnemonic = formData.game.mnemonic
+  return api.updateGame(returnedData)
+}
+
 const onEditSubmit = function (event) {
   event.preventDefault()
   const id = $(event.target).data('id')
-  console.log(event.target)
-  console.log(id)
   const data = getFormFields(event.target)
-  console.log(data)
+  api.showGame(id)
+    .then((returnedData) => smooshUpdate(returnedData, data))
+    .then(api.indexGames)
+    .then(ui.indexGamesSuccess)
+    .catch(ui.indexGamesFailure)
 }
 
 const onCnfrmClick = function (event) {
