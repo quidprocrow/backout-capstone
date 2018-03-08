@@ -63,7 +63,7 @@ const newGameSubmit = function (event) {
   data = JSON.stringify(data)
   api.createGame(data)
     .then((data) => gameplayEvents.makeSentence(data.game.id))
-    .then((data) => gameplayEvents.makeSentenceWords(data, 1))
+    .then((data) => gameplayEvents.makeSentenceWords(data, 1, true))
     .then(ui.createGameSuccess)
     .then(api.indexGames)
     .then(ui.indexGamesSuccess)

@@ -43,9 +43,20 @@ const indexSeedWords = function () {
   })
 }
 
+const showSeedStep = function (id) {
+  return $.ajax({
+    url: config.apiOrigin + '/seededsteps/' + id,
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   showSeedSentence,
   indexSeedSentences,
   showSeedWord,
-  indexSeedWords
+  indexSeedWords,
+  showSeedStep
 }
