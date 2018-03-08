@@ -55,6 +55,8 @@ const showOneGame = function (data) {
   $('#error-message-section').show()
   $('#user-message').html('')
   $('#mnemonic-title').html(data.game.mnemonic)
+  $('#wisdom-bar-percentage').css('width', (data.game.wisdom + '%'))
+  $('#hope-bar-percentage').css('width', (data.game.hope + '%'))
   storyFill(data)
 }
 

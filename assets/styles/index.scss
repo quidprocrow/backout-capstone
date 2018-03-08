@@ -232,6 +232,47 @@ p {
   font-family: 'Ubuntu Mono';
   cursor: help;
 }
+
+#stats {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px auto;
+  overflow: auto;
+}
+
+#hope-bar, #hope-text, #wisdom-bar, #wisdom-text {
+  float: left;
+  font-family: 'Ubuntu Mono';
+  font-size: 15px;
+  text-transform: uppercase;
+  text-align: center;
+  min-width: 100px;
+  min-height: 25px;
+  vertical-align: center;
+}
+
+#wisdom-bar {
+  clear: left;
+}
+
+#wisdom-bar, #hope-bar {
+  width: 400px;
+}
+
+#wisdom-bar-percentage {
+  height: 5px;
+  width: 75%;
+  background: blue;
+  margin-top: 10px;
+
+}
+
+#hope-bar-percentage {
+  height: 5px;
+  width: 50%;
+  background: red;
+  margin-top: 10px;
+}
 // .change-pass-form
 // > .little-button {
 //   width: 300px;
