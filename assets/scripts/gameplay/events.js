@@ -15,8 +15,10 @@ const spitSeedsFromWords = function (data, sentenceId) {
       redacted: data.redacted,
       sentence_id: sentenceId,
       seedid: data.id
-
     }
+  }
+  if (data.seededstep !== null) {
+    seedless.word.seedstep = data.seededstep.id
   }
   seedless = JSON.stringify(seedless)
   return seedless
