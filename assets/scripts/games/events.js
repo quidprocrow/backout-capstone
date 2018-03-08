@@ -63,7 +63,16 @@ const newGameSubmit = function (event) {
   data = JSON.stringify(data)
   api.createGame(data)
     .then((data) => gameplayEvents.makeSentence(data.game.id))
-    .then((data) => gameplayEvents.makeSentenceWords(data, 1, true))
+    .then((data) => {
+      delete store.sentenceMaker
+      store.sentenceMaker = {}
+      store.sentenceMaker.currentSentenceId = data.sentence.id
+      return gameplayEvents.makeSentenceWords(data, 1, true)
+    })
+    .then((data) => {
+      return gameplayEvents.seededWordLoop(data, store.sentenceMaker.currentSentenceId)
+    })
+    // you will need to add some stuff to call sentence words
     .then(ui.createGameSuccess)
     .then(api.indexGames)
     .then(ui.indexGamesSuccess)

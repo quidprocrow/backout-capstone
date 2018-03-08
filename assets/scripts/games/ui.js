@@ -2,7 +2,11 @@ const fillers = require('../fillers.js')
 const store = require('../store.js')
 
 const showGameSuccess = function (data) {
+  delete store.currentGame
   store.currentGame = data.game
+  console.log('I am the data at success', data)
+  console.log('I am the store now', store.currentGame)
+  console.log('I am the data words', data.game.words)
   $('#user-message').html('')
   fillers.showOneGame(data)
 }
