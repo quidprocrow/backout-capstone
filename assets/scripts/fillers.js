@@ -34,7 +34,7 @@ const storyFill = function (data) {
   })
   neatSentences.forEach((word) => {
     if (word.clickable === true) {
-      const palimpsest = '<span class="clickable" data-id="' + word.seedstep + '" data-game-id="' + store.currentGame.id + '">' + word.text + '</span>'
+      const palimpsest = '<span class="clickable" data-id="' + word.seedstep + '" data-sentence-id="' + word.sentence_id + '" data-game-id="' + store.currentGame.id + '">' + word.text + '</span>'
       story.push(palimpsest)
     } else if (word.redacted === true) {
       const palimpsest = '<span class="redacted">' + word.text + '</span>'

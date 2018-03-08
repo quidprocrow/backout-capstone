@@ -27,7 +27,20 @@ const createWord = function (data) {
   })
 }
 
+const updateWord = function (data) {
+  return $.ajax({
+    url: config.apiOrigin + '/words/' + data.word.id,
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Token token=' + store.user.token
+    },
+    data
+  })
+}
+
 module.exports = {
   createWord,
-  createSentence
+  createSentence,
+  updateWord
 }
