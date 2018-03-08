@@ -7,7 +7,6 @@ const gameplayEvents = require('../gameplay/events.js')
 // const seedApi = require('../gameplay/seeds/api.js')
 
 const onPlayClick = function (event) {
-  console.log('it happen')
   const id = $(event.target).data('id')
   api.showGame(id)
     .then(ui.showGameSuccess)
@@ -19,55 +18,6 @@ const smooshUpdate = function (returnedData, formData) {
   returnedData.game.mnemonic = formData.game.mnemonic
   return api.updateGame(returnedData)
 }
-
-// const spitSeedsFromWords = function (data, sentenceId) {
-//   let seedless = {
-//     word: {
-//       text: data.text,
-//       clickable: data.clickable,
-//       step: data.step,
-//       user_id: store.user.id,
-//       redacted: data.redacted,
-//       sentence_id: sentenceId,
-//       seedid: data.id
-//
-//     }
-//   }
-//   seedless = JSON.stringify(seedless)
-//   return seedless
-// }
-//
-// const wordLoop = function (data, senId) {
-//   const count = data.seededsentence.seededwords.length
-//   const seedWords = data.seededsentence.seededwords
-//   for (let i = 0; i < count; i++) {
-//     console.log(seedWords[i])
-//     const newWord = spitSeedsFromWords(seedWords[i], senId)
-//     console.log(newWord)
-//     api.createWord(newWord)
-//       .then()
-//       .catch(ui.indexGamesFailure)
-//   }
-// }
-//
-// const firstSentenceWords = function (data) {
-//   const senId = data.sentence.id
-//   seedApi.showSeedSentence(1)
-//     .then((data) => wordLoop(data, senId))
-//     .catch(console.errors)
-// }
-//
-// const firstSentence = function (id) {
-//   let seedless = {
-//     sentence: {
-//       active: 'active',
-//       game_id: id,
-//       user_id: store.user.id
-//     }
-//   }
-//   seedless = JSON.stringify(seedless)
-//   return api.createSentence(seedless)
-// }
 
 const onEditSubmit = function (event) {
   event.preventDefault()

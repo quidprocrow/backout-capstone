@@ -1,3 +1,4 @@
+const store = require('./store.js')
 
 const refresh = function () {
   $('#intro').hide()
@@ -20,6 +21,33 @@ const showManyGames = function () {
   $('#user-message').html('')
 }
 
+const storyFill = function (data) {
+  const story = ['<p class="justify">']
+  const neatSentences = store.currentGame.words.sort(function (a, b) {
+    if (a.seedid < b.seedid) {
+      return -1
+    } else if (a.seedid > b.seedid) {
+      return 1
+    } else {
+      return 0
+    }
+  })
+  neatSentences.forEach((word) => {
+    if (word.clickable === true) {
+      const palimpsest = '<span class="clickable" data-id="' + word.seedstep + '">' + word.text + '</span>'
+      story.push(palimpsest)
+    } else if (word.redacted === true) {
+      const palimpsest = '<span class="redacted">' + word.text + '</span>'
+      story.push(palimpsest)
+    } else {
+      story.push(word.text)
+    }
+  })
+  story.push('</p>')
+  const neatHtml = story.join(' ')
+  $('#display-one-game').html(neatHtml)
+}
+
 const showOneGame = function (data) {
   refresh()
   $('#navigation').show()
@@ -27,6 +55,7 @@ const showOneGame = function (data) {
   $('#error-message-section').show()
   $('#user-message').html('')
   $('#mnemonic-title').html(data.game.mnemonic)
+  storyFill(data)
 }
 
 const showIntro = function () {

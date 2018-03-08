@@ -220,6 +220,18 @@ p {
 
 }
 
+.redacted {
+  color: black;
+  background: black;
+  padding: 2px;
+}
+
+.clickable {
+  color: black;
+  border-bottom: 2px solid pink;
+  font-family: 'Ubuntu Mono';
+  cursor: help;
+}
 // .change-pass-form
 // > .little-button {
 //   width: 300px;

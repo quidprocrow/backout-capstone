@@ -3,7 +3,6 @@ const store = require('../store.js')
 
 const showGameSuccess = function (data) {
   store.currentGame = data.game
-  console.log(store.currentGame)
   $('#user-message').html('')
   fillers.showOneGame(data)
 }
