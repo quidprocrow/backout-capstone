@@ -7,7 +7,12 @@ const api = require('./api.js')
 const gameApi = require('../games/api.js')
 const gameUi = require('../games/ui.js')
 
-//
+const adjustGame = function (data) {
+  data.game.hope = data.game.hope + store.seedPlanter.hopemodifier
+  data.game.wisdom = data.game.wisdom + store.seedPlanter.wisdommodifier
+  return gameApi.updateGame(data)
+}
+
 const redactWords = function (redactArray, currentSentenceWords) {
   const promiseArray = []
   redactArray.forEach((redact) => {
@@ -25,7 +30,6 @@ const redactWords = function (redactArray, currentSentenceWords) {
       }
     })
   })
-  console.log('Promise array!', promiseArray)
   return Promise.all(promiseArray)
 }
 
@@ -35,8 +39,7 @@ const spitClicksFromWords = function (data) {
     word: {
       id: data.id,
       text: data.text,
-      clickable: false,
-      redacted: data.redacted
+      clickable: false
     }
   }
   clickless = JSON.stringify(clickless)
@@ -134,11 +137,12 @@ const getNextStep = function (event) {
     })
     .then(() => seedApi.showSeedStep(id))
     .then((data) => {
-      console.log('I am the seed step data return', data)
-      return data
+      store.seedPlanter = data.seededstep
+      return redactWords(data.seededstep.redact, store.sentenceMaker.currentSentenceWords)
     })
-    .then((data) => redactWords(data.seededstep.redact, store.sentenceMaker.currentSentenceWords))
+    .then(() => seedApi.showSeedStep(id))
     .then(() => gameApi.showGame(gameId))
+    .then((data) => adjustGame(data))
     .then(gameUi.showGameSuccess)
     .then(() => makeSentence(gameId))
     .then((data) => {
