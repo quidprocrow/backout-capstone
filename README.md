@@ -1,7 +1,7 @@
 # backOUT
 backOut is a story game, inspired by black out poetry and the choose your own adventure, about emphasis and what redaction means. The protagonist is a young woman who has made a mistake and hopes to correct it, magically; to play, choose from the available terms what she should be focusing on.
 
-[! check it out](https://preview.ibb.co/bUBjTS/Screenshot_2018_03_08_20_39_38.png)
+![check it out](https://preview.ibb.co/bUBjTS/Screenshot_2018_03_08_20_39_38.png)
 
 ## Related
 - [Deployed API](https://tranquil-brook-35365.herokuapp.com)
@@ -16,7 +16,7 @@ backOut is a story game, inspired by black out poetry and the choose your own ad
 - PostGresSQL
 
 ## Planning process
-I planned to write a choose your own adventure, where particular sentences would be displayed as a result of a players selecting a certain clickable word -- and words would be redacted on the basis of that same choice, with the game's hope and wisdom stats reflecting consequences. To do this, I thought I needed to have sentences that owned words, with words having keys for their clickability and whether or not they were redacted, as well as a link to the next step. 
+I planned to write a choose your own adventure, where particular sentences would be displayed as a result of a players selecting a certain clickable word -- and words would be redacted on the basis of that same choice, with the game's hope and wisdom stats reflecting consequences. To do this, I thought I needed to have sentences that owned words, with words having keys for their clickability and whether or not they were redacted, as well as a link to the next step.
 
 
 ## Future Improvements
