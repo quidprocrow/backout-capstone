@@ -7,12 +7,47 @@ const api = require('./api.js')
 const gameApi = require('../games/api.js')
 const gameUi = require('../games/ui.js')
 
+//
+const redactWords = function (redactArray, currentSentenceWords) {
+  const promiseArray = []
+  redactArray.forEach((redact) => {
+    currentSentenceWords.forEach((word) => {
+      if (redact === word.seedid) {
+        let blotOut = {
+          word: {
+            id: word.id,
+            clickable: false,
+            redacted: true
+          }
+        }
+        blotOut = JSON.stringify(blotOut)
+        promiseArray.push(api.updateWord(blotOut))
+      }
+    })
+  })
+  console.log('Promise array!', promiseArray)
+  return Promise.all(promiseArray)
+}
+
+const spitClicksFromWords = function (data) {
+  // console.log('I am the data at spit', data)
+  let clickless = {
+    word: {
+      id: data.id,
+      text: data.text,
+      clickable: false,
+      redacted: data.redacted
+    }
+  }
+  clickless = JSON.stringify(clickless)
+  return clickless
+}
+
 const spitSeedsFromWords = function (data, sentenceId) {
   let seedless = {
     word: {
       text: data.text,
       clickable: data.clickable,
-      step: data.step,
       user_id: store.user.id,
       redacted: data.redacted,
       sentence_id: sentenceId,
@@ -24,6 +59,21 @@ const spitSeedsFromWords = function (data, sentenceId) {
   }
   seedless = JSON.stringify(seedless)
   return seedless
+}
+
+const clicklessWordLoop = function (data) {
+  // expects an unseeded sentence to be the preceding data.
+  // console.log('I am the data at clickless', data)
+  const count = data.sentence.words.length
+  const clickableWords = data.sentence.words
+  const promiseArray = []
+  for (let i = 0; i < count; i++) {
+    // console.log('I am the data in the for loop', clickableWords[i])
+    const newWord = spitClicksFromWords(clickableWords[i])
+    // console.log('I got here', newWord)
+    promiseArray.push(api.updateWord(newWord))
+  }
+  return Promise.all([promiseArray])
 }
 
 // Creates an array of promises to create words, based
@@ -72,9 +122,25 @@ const makeSentence = function (id) {
 const getNextStep = function (event) {
   const id = $(event.target).data('id')
   const gameId = $(event.target).data('game-id')
+  const origSenId = $(event.target).data('sentence-id')
   // console.log('I am the game id', gameId)
 
-  makeSentence(gameId)
+  api.showSentence(origSenId)
+    .then((data) => {
+      delete store.sentenceMaker
+      store.sentenceMaker = {}
+      store.sentenceMaker.currentSentenceWords = data.sentence.words
+      return clicklessWordLoop(data)
+    })
+    .then(() => seedApi.showSeedStep(id))
+    .then((data) => {
+      console.log('I am the seed step data return', data)
+      return data
+    })
+    .then((data) => redactWords(data.seededstep.redact, store.sentenceMaker.currentSentenceWords))
+    .then(() => gameApi.showGame(gameId))
+    .then(gameUi.showGameSuccess)
+    .then(() => makeSentence(gameId))
     .then((data) => {
       // console.log('I am the data', data)
       delete store.sentenceMaker

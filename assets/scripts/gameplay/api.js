@@ -28,8 +28,9 @@ const createWord = function (data) {
 }
 
 const updateWord = function (data) {
+  const parsed = JSON.parse(data)
   return $.ajax({
-    url: config.apiOrigin + '/words/' + data.word.id,
+    url: config.apiOrigin + '/words/' + parsed.word.id,
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -39,8 +40,20 @@ const updateWord = function (data) {
   })
 }
 
+const showSentence = function (id) {
+  return $.ajax({
+    url: config.apiOrigin + '/sentences/' + id,
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   createWord,
   createSentence,
-  updateWord
+  updateWord,
+  showSentence
 }
