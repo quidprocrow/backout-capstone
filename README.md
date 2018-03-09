@@ -1,61 +1,58 @@
-[![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
+# backOUT
+backOut is a story game, inspired by black out poetry and the choose your own adventure, about emphasis and what redaction means. The protagonist is a young woman who has made a mistake and hopes to correct it, magically; to play, choose from the available terms what she should be focusing on.
 
-# browser-template
+[! check it out](https://preview.ibb.co/bUBjTS/Screenshot_2018_03_08_20_39_38.png)
 
-A template for starting front-end projects. Webpack for `require` system, build
-pipeline, and development server. Boostrap and Handlebars.js included. No
-front-end frameworks included.
+## Related
+- [Deployed API](https://tranquil-brook-35365.herokuapp.com)
+- [Deployed Client Site](https://quidprocrow.github.io/backout-capstone/)
+- [CLient Repository](https://github.com/quidprocrow/backout-capstone)
+- [API Repository](https://github.com/quidprocrow/backout-capstone-api)
 
-## Installation
+## Technologies used
+- JS
+- Ruby on Rails
+- AJAX
+- PostGresSQL
 
-1.  [Download](../../archive/master.zip) this template.
-1.  Unzip and rename the template directory.
-1.  Empty [`README.md`](README.md) and fill with your own content.
-1.  Replace all instances of `capstone-project` with the name of your project.
-1.  Move into the new project and `git init`
-1.  Add all of the files in your project with the command `git add -A`
-  -   *Note:* THIS IS THE ONLY TIME YOU SHOULD RUN THIS COMMAND
-1.  Commit all of your files with the command `git commit`
-  -   Your commit title should read `Initial commit`
-1.  Install dependencies with `npm install`.
+## Planning process
+I planned to write a choose your own adventure, where particular sentences would be displayed as a result of a players selecting a certain clickable word -- and words would be redacted on the basis of that same choice, with the game's hope and wisdom stats reflecting consequences. To do this, I thought I needed to have sentences that owned words, with words having keys for their clickability and whether or not they were redacted, as well as a link to the next step. 
 
-## Structure
 
-Developers should store JavaScript files in [`assets/scripts`](assets/scripts).
-The "manifest" or entry-point is
-[`assets/scripts/index.js`](assets/scripts/index.js). In general, only
-application initialization goes in this file. It's normal for developers to
-start putting all code in this file, but encourage them to break out different
-responsibilities and use the `require` syntax put references where they're
-needed.
+## Future Improvements
+I have not reached what I would consider the core functionality of the application: the ability to see an evolving story. At present, I believe I was a bit foolish in my reliance on the backend to the extent that I did; in order to be able to display redacted words in a story, I had users that owned sentences that owned words that owned steps, with the 'story' living in seeded equivalent tables. This made for an incredible burden on JS promises. I need to streamline the number of requests; I'm considering eliminating the seeded components on the backend and simply having a javasript object representing possible sentences, with a switch conditional directing to the appropriate sentence.
 
-Developers should set `config.apiOrigins.production` (and
-`config.apiOrigins.development` if it differs from the default).  With
-`apiOrigins` set, developers may rely on `config.apiOrigin` as the base for API
-URLs.
 
-Developers should store styles in [`assets/styles`](assets/styles) and load them
-from [`assets/styles/index.scss`](assets/styles/index.scss).
+## User stories
+As a user, I can create a game.
+As a user, I can update a game by interacting with a game's sentences.
+As a user, I can delete game.
+As a user, I can show / 'load' a saved game.
+As a user, I can see all of the sentences marked as active at once.
+As a user, I can interact with games by clicking on select words.
+As a user, I can see a new sentence as a result of a previous click on a particular word.
+As a user, I cannot click a previous sentence's words.
+As a user, I cannot create sentences.
+As a user, I can view sentences that have been selectively redacted (blacked out).
+As a user, I can view my hope and wisdom.
+As a user, I observe as my hope and wisdom stats change on the basis of choices.
+As a user, I  am notified when the game is over.
+As a user, I can change my password.
+As a user, I can sign out.
+As a user, I can sign in.
+Asa  user, I can sign up.
 
-Developers should use [getFormFields](forms.md) to retrieve form data to send to
-an API.
+## ERD
+https://www.lucidchart.com/invitations/accept/e9ef0c1e-0bc6-47b3-ac72-70ab93b7fecd
 
-To deploy a browser-template based SPA, run `grunt deploy`.
+## WIREFREAMES
+https://ibb.co/dBfdF7
 
-## Tasks
 
-Developers should run these often!
 
--   `grunt nag` or just `grunt`: runs code quality analysis tools on your code
-    and complains
--   `grunt make-standard`: reformats all your code in the JavaScript Standard Style
--   `grunt <server|serve|s>`: generates bundles, watches, and livereloads
--   `grunt test`: runs any automated tests, depends on `grunt build`
--   `grunt build`: place bundled styles and scripts where `index.html` can find
-    them
 
-## [License](LICENSE)
-
-1.  All content is licensed under a CC­BY­NC­SA 4.0 license.
-1.  All software code is licensed under GNU GPLv3. For commercial use or
-    alternative licensing, please contact legal@ga.co.
+## Gratitudes
+- Maria Ines, Naida Rosenberger, Sarah Burke, Kostant Stanton, Virginia Donaire, Kate Lindsay, and Rebecca Coras were key components in my mental health in building this.
+- Danny Kirschner and Nate Dunn were both excellent advisers on the structure of the database and the structure of the application.
+- Mike Finneran was of great assistance in tackling serialization issues.
+- Dan Soszynski graciously got me maple syrup upon request (as well as a lint roller!).

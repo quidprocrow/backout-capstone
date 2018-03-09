@@ -70,7 +70,7 @@ const tableFill = function (data) {
   const tableHtml = (`
     <table class="center">
       <tr>
-        <td class="table-top" width="200px">
+        <td class="table-top" width="300px">
         MNEMONIC
         </td>
         <td class="table-top" width="50px">
@@ -82,9 +82,6 @@ const tableFill = function (data) {
         <td class="table-top" width="75px">
         WISDOM
         </td>
-        <td class="table-top" width="100px">
-        PLAY
-        </td>
       </tr>
     `)
   $('#display-all-games').html(tableHtml)
@@ -92,7 +89,7 @@ const tableFill = function (data) {
     const title = game.mnemonic.slice(0, 16)
     const gameHtml = (`
       <tr height="50px">
-        <td class="table-cell" width="221px" data-id="${game.id}">
+        <td class="table-cell" width="332px" data-id="${game.id}">
         <p class="mnemonic" data-mnemonic-update="${game.mnemonic}">${title}</p>
 
         <span data-id="${game.id}" class="delete-game">X</span>
@@ -107,9 +104,6 @@ const tableFill = function (data) {
         </td>
         <td class="table-cell" width="83px" data-id="${game.id}">
         ${game.wisdom}
-        </td>
-        <td class="table-cell" width="111px">
-        <span data-id="${game.id}" class="play-game">GO</span>
         </td>
       </tr>
       `)
