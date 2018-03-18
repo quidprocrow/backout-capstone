@@ -1,9 +1,11 @@
 const fillers = require('../fillers.js')
 const store = require('../store.js')
+const errorTemplate = require('../templates/error.handlebars')
+const successTemplate = require('../templates/success.handlebars')
 
 const onSignInSuccess = function (data) {
+  delete store.autoSignIn
   store.user = data.user
-  store.autoSignIn = null
   fillers.showInstructions()
 }
 
@@ -19,29 +21,18 @@ const onSignUpSuccess = function (data) {
 }
 
 const onSignFailure = function (data) {
-  const errorHtml = (`
-    <p class="message">
-    <b>Hmm.<b/> Something went wrong.
-    </p>
-    `)
+  const errorHtml = errorTemplate()
   $('#sign-forms').html(errorHtml)
 }
 
 const changePassSuccess = function () {
-  const errorHtml = (`
-    <p class="message">
-    Well done.
-    </p>
-    `)
-  $('#user-message').html(errorHtml)
+  const successHtml = successTemplate()
+  $('#change-password-form')[0].reset()
+  $('#user-message').html(successHtml)
 }
 
 const changePassFailure = function () {
-  const errorHtml = (`
-    <p class="message">
-    <b>Hmm.<b/> Something went wrong.
-    </p>
-    `)
+  const errorHtml = errorTemplate()
   $('#user-message').html(errorHtml)
 }
 
@@ -52,11 +43,7 @@ const signOutSuccess = function () {
 }
 
 const signOutFailure = function () {
-  const errorHtml = (`
-    <p class="message">
-    <b>Hmm.<b/> Something went wrong.
-    </p>
-    `)
+  const errorHtml = errorTemplate()
   $('#user-message').html(errorHtml)
 }
 
