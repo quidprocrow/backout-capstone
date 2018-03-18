@@ -1,5 +1,6 @@
 const store = require('./store.js')
 const introTemplate = require('./templates/intro.handlebars')
+const navTemplate = require('./templates/nav.handlebars')
 
 const refresh = function () {
   $('#intro').hide()
@@ -12,6 +13,7 @@ const refresh = function () {
   $('#new-game-form-area').html('')
   $('#mnemonic-title').html('')
   $('#one-game').hide()
+  $('#content').html('')
 }
 
 const showManyGames = function () {
@@ -121,11 +123,14 @@ const tableFill = function (data) {
 
 const showInstructions = function () {
   refresh()
-  $('#navigation').show()
-  $('#instructions').show()
-  $('#error-message-section').show()
-  $('#user-message').html('')
+  const navHtml = navTemplate()
+  $('#content').html(navHtml)
+  // $('#navigation').show()
+  // $('#instructions').show()
+  // $('#error-message-section').show()
+  // $('#user-message').html('')
 }
+
 const showChangePass = function () {
   refresh()
   $('#navigation').show()
