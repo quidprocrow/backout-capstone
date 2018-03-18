@@ -2,16 +2,9 @@ const fillers = require('../fillers.js')
 const store = require('../store.js')
 
 const onSignInSuccess = function (data) {
-  fillers.showInstructions()
   store.user = data.user
   store.autoSignIn = null
-  const userGreet = store.user.email.split('@')
-  // Greet the user.
-  if (userGreet[0].length < 16) {
-    $('.user-greeting').html(userGreet[0]).css('text-transform', 'uppercase')
-  } else {
-    $('.user-greeting').html('HELLO').css('text-transform', 'uppercase')
-  }
+  fillers.showInstructions()
 }
 
 const onSignUpSuccess = function (data) {
