@@ -91,7 +91,7 @@ const gameLinkClick = function () {
 }
 
 const addGamesEventListeners = function () {
-  $('#game-link').on('click', gameLinkClick)
+  $('#content').on('click', '#game-link', gameLinkClick)
   $('#new-game-button').on('click', gameButtonClick)
   $('#new-game-form-area').on('submit', '#new-game-form', newGameSubmit)
   $('#display-all-games').on('click', '.delete-game', deleteGameClick)

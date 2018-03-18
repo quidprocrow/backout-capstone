@@ -6,18 +6,20 @@ const msgTemplate = require('./templates/message.handlebars')
 const changePassTemplate = require('./templates/change-password.handlebars')
 const signInTemplate = require('./templates/sign-in-form.handlebars')
 const signUpTemplate = require('./templates/sign-up-form.handlebars')
+const manyGamesTemplate = require('./templates/many-games.handlebars')
+const indexGamesTemplate = require('./templates/index-games.handlebars')
 
 const refresh = function () {
-  $('#intro').hide()
-  $('#navigation').hide()
-  $('#instructions').hide()
-  $('#change-password').hide()
-  $('#many-games').hide()
-  $('#user-message').html('')
-  $('#sign-forms').html('')
-  $('#new-game-form-area').html('')
-  $('#mnemonic-title').html('')
-  $('#one-game').hide()
+  // $('#intro').hide()
+  // $('#navigation').hide()
+  // $('#instructions').hide()
+  // $('#change-password').hide()
+  // $('#many-games').hide()
+  // $('#user-message').html('')
+  // $('#sign-forms').html('')
+  // $('#new-game-form-area').html('')
+  // $('#mnemonic-title').html('')
+  // $('#one-game').hide()
   $('#content').html('')
 }
 
@@ -31,12 +33,23 @@ const greeting = function () {
   }
 }
 
+const showNav = function () {
+  const navHtml = navTemplate()
+  $('#content').html(navHtml)
+  greeting()
+}
+
+const showMsg = function () {
+  const msgHtml = msgTemplate()
+  $('#content').append(msgHtml)
+}
+
 const showManyGames = function () {
   refresh()
-  $('#navigation').show()
-  $('#many-games').show()
-  $('#error-message-section').show()
-  $('#user-message').html('')
+  showNav()
+  const manyGamesHtml = manyGamesTemplate()
+  $('#content').append(manyGamesHtml)
+  showMsg()
 }
 
 const storyFill = function (data) {
@@ -85,77 +98,24 @@ const showIntro = function () {
 }
 
 const tableFill = function (data) {
-  const halt = data.games.length - 1
-  const tableHtml = (`
-    <table class="center">
-      <tr>
-        <td class="table-top" width="300px">
-        MNEMONIC
-        </td>
-        <td class="table-top" width="50px">
-        SENTENCES
-        </td>
-        <td class="table-top" width="75px">
-        HOPE
-        </td>
-        <td class="table-top" width="75px">
-        WISDOM
-        </td>
-      </tr>
-    `)
-  $('#display-all-games').html(tableHtml)
-  data.games.forEach((game, index) => {
-    const title = game.mnemonic.slice(0, 16)
-    const gameHtml = (`
-      <tr height="50px">
-        <td class="table-cell" width="332px" data-id="${game.id}">
-        <p class="mnemonic" data-mnemonic-update="${game.mnemonic}">${title}</p>
-
-        <span data-id="${game.id}" class="delete-game">X</span>
-        <span data-id="${game.id}" class="update-game">EDIT</span>
-
-        </td>
-        <td class="table-cell" width="111px" data-id="${game.id}">
-        ${game.sentences.length}
-        </td>
-        <td class="table-cell" width="83px" data-id="${game.id}">
-        ${game.hope}
-        </td>
-        <td class="table-cell" width="83px" data-id="${game.id}">
-        ${game.wisdom}
-        </td>
-      </tr>
-      `)
-    $('#display-all-games').append(gameHtml)
-    if (index === halt) {
-      const endTableHtml = (`
-        </table>
-        `)
-      $('#display-all-games').append(endTableHtml)
-    }
-  })
+  const indexGamesHtml = indexGamesTemplate({'games': data.games})
+  $('#display-all-games').html(indexGamesHtml)
 }
 
 const showInstructions = function () {
   refresh()
-  const navHtml = navTemplate()
+  showNav()
   const instructionsHtml = instructionsTemplate()
-  const msgHtml = msgTemplate()
-  $('#content').html(navHtml)
   $('#content').append(instructionsHtml)
-  $('#content').append(msgHtml)
-  greeting()
+  showMsg()
 }
 
 const showChangePass = function () {
   refresh()
-  const navHtml = navTemplate()
+  showNav()
   const changePassHtml = changePassTemplate()
-  const msgHtml = msgTemplate()
-  $('#content').html(navHtml)
   $('#content').append(changePassHtml)
-  $('#content').append(msgHtml)
-  greeting()
+  showMsg()
 }
 
 const showUpdateField = function (game, gameValue, id) {
