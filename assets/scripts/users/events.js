@@ -43,12 +43,12 @@ const signOutClick = function () {
 const addUserEventListeners = function () {
   $('#content').on('click', '#sign-in-button', fillers.showSignInForm)
   $('#content').on('click', '#sign-up-button', fillers.showSignUpForm)
-  $('#sign-forms').on('submit', '#sign-in-form', signInSubmit)
-  $('#sign-forms').on('submit', '#sign-up-form', signUpSubmit)
-  $('#instructions-link').on('click', fillers.showInstructions)
-  $('#change-password-link').on('click', fillers.showChangePass)
-  $('#change-password-form').on('submit', changePassSubmit)
-  $('#sign-out-link').on('click', signOutClick)
+  $('#content').on('submit', '#sign-in-form', signInSubmit)
+  $('#content').on('submit', '#sign-up-form', signUpSubmit)
+  $('#content').on('click', '#instructions-link', fillers.showInstructions)
+  $('#content').on('click', '#change-password-link', fillers.showChangePass)
+  $('#content').on('submit', '#change-password-form', changePassSubmit)
+  $('#content').on('click', '#sign-out-link', signOutClick)
 }
 
 module.exports = {
