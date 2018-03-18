@@ -10,6 +10,7 @@ const manyGamesTemplate = require('./templates/many-games.handlebars')
 const indexGamesTemplate = require('./templates/index-games.handlebars')
 const newGameTemplate = require('./templates/new-game.handlebars')
 const updateGameTemplate = require('./templates/update-game.handlebars')
+const oneGameTemplate = require('./templates/one-game.handlebars')
 
 const refresh = function () {
   $('#content').html('')
@@ -73,10 +74,10 @@ const storyFill = function (data) {
 
 const showOneGame = function (data) {
   refresh()
-  $('#navigation').show()
-  $('#one-game').show()
-  $('#error-message-section').show()
-  $('#user-message').html('')
+  showNav()
+  const oneGameHtml = oneGameTemplate()
+  $('#content').append(oneGameHtml)
+  showMsg()
   $('#mnemonic-title').html(data.game.mnemonic)
   $('#wisdom-bar-percentage').css('width', (data.game.wisdom + '%'))
   $('#hope-bar-percentage').css('width', (data.game.hope + '%'))
