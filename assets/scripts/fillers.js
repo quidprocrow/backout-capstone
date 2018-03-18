@@ -3,6 +3,9 @@ const introTemplate = require('./templates/intro.handlebars')
 const navTemplate = require('./templates/nav.handlebars')
 const instructionsTemplate = require('./templates/instructions.handlebars')
 const msgTemplate = require('./templates/message.handlebars')
+const changePassTemplate = require('./templates/change-password.handlebars')
+const signInTemplate = require('./templates/sign-in-form.handlebars')
+const signUpTemplate = require('./templates/sign-up-form.handlebars')
 
 const refresh = function () {
   $('#intro').hide()
@@ -16,6 +19,16 @@ const refresh = function () {
   $('#mnemonic-title').html('')
   $('#one-game').hide()
   $('#content').html('')
+}
+
+const greeting = function () {
+  const userGreet = store.user.email.split('@')
+  // Greet the user.
+  if (userGreet[0].length < 16) {
+    $('.user-greeting').html(userGreet[0]).css('text-transform', 'uppercase')
+  } else {
+    $('.user-greeting').html('HELLO').css('text-transform', 'uppercase')
+  }
 }
 
 const showManyGames = function () {
@@ -131,18 +144,18 @@ const showInstructions = function () {
   $('#content').html(navHtml)
   $('#content').append(instructionsHtml)
   $('#content').append(msgHtml)
-  // $('#navigation').show()
-  // $('#instructions').show()
-  // $('#error-message-section').show()
-  // $('#user-message').html('')
+  greeting()
 }
 
 const showChangePass = function () {
   refresh()
-  $('#navigation').show()
-  $('#change-password').show()
-  $('#error-message-section').show()
-  $('#user-message').html('')
+  const navHtml = navTemplate()
+  const changePassHtml = changePassTemplate()
+  const msgHtml = msgTemplate()
+  $('#content').html(navHtml)
+  $('#content').append(changePassHtml)
+  $('#content').append(msgHtml)
+  greeting()
 }
 
 const showUpdateField = function (game, gameValue, id) {
@@ -177,37 +190,12 @@ const showNewGameForm = function () {
 }
 
 const showSignInForm = function () {
-  const signHtml = (`
-      <h2>SIGN IN</h2>
-      <form id="sign-in-form">
-        <div class="center">
-          <input type="text" name="credentials[email]" placeholder="EMAIL" class="input-field">
-        </div>
-        <div class="center">
-        <input type="password" name= "credentials[password]" placeholder="PASSWORD" class="input-field">
-        </div>
-        <button class="little-button" id="sign-in-form-button">SIGN IN</button>
-      </form>
-  `)
+  const signHtml = signInTemplate()
   $('#sign-forms').html(signHtml)
 }
 
 const showSignUpForm = function () {
-  const signHtml = (`
-    <form id="sign-up-form">
-          <h2>SIGN UP</h2>
-          <div class="center">
-            <input type="text" name="credentials[email]" placeholder="EMAIL" class="input-field">
-          </div>
-          <div class="center">
-          <input type="password" name= "credentials[password]" placeholder="PASSWORD" class="input-field">
-          </div>
-          <div class="center">
-          <input type="password" name= "credentials[password_confirmation]" placeholder="PASSWORD CONFIRMATION" class="input-field">
-          </div>
-          <button class="little-button" id="sign-up-form-button">SIGN UP</button>
-          </form>
-  `)
+  const signHtml = signUpTemplate()
   $('#sign-forms').html(signHtml)
 }
 
