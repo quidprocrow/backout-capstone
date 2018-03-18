@@ -1,6 +1,7 @@
 const store = require('./store.js')
 const introTemplate = require('./templates/intro.handlebars')
 const navTemplate = require('./templates/nav.handlebars')
+const instructionsTemplate = require('./templates/instructions.handlebars')
 
 const refresh = function () {
   $('#intro').hide()
@@ -124,7 +125,9 @@ const tableFill = function (data) {
 const showInstructions = function () {
   refresh()
   const navHtml = navTemplate()
+  const instructionsHtml = instructionsTemplate()
   $('#content').html(navHtml)
+  $('#content').append(instructionsHtml)
   // $('#navigation').show()
   // $('#instructions').show()
   // $('#error-message-section').show()
