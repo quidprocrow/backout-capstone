@@ -41,8 +41,8 @@ const signOutClick = function () {
 }
 
 const addUserEventListeners = function () {
-  $('#sign-in-button').on('click', fillers.showSignInForm)
-  $('#sign-up-button').on('click', fillers.showSignUpForm)
+  $('#content').on('click', '#sign-in-button', fillers.showSignInForm)
+  $('#content').on('click', '#sign-up-button', fillers.showSignUpForm)
   $('#sign-forms').on('submit', '#sign-in-form', signInSubmit)
   $('#sign-forms').on('submit', '#sign-up-form', signUpSubmit)
   $('#instructions-link').on('click', fillers.showInstructions)

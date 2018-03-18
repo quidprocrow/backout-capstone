@@ -1,4 +1,5 @@
 const store = require('./store.js')
+const introTemplate = require('./templates/intro.handlebars')
 
 const refresh = function () {
   $('#intro').hide()
@@ -62,7 +63,8 @@ const showOneGame = function (data) {
 
 const showIntro = function () {
   refresh()
-  $('#intro').show()
+  const introHtml = introTemplate()
+  $('#content').html(introHtml)
 }
 
 const tableFill = function (data) {
