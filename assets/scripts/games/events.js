@@ -31,7 +31,7 @@ const onEditSubmit = function (event) {
 }
 
 const onCnfrmClick = function (event) {
-  $(event.target).siblings('.mnemonic').children('.update-game-form').submit()
+  $(event.target).parent('.mnemonic').children('.update-game-form').submit()
 }
 
 const onNvmClick = function () {
@@ -62,16 +62,16 @@ const newGameSubmit = function (event) {
   data.game.user_id = store.user.id
   data = JSON.stringify(data)
   api.createGame(data)
-    .then((data) => gameplayEvents.makeSentence(data.game.id))
-    .then((data) => {
-      delete store.sentenceMaker
-      store.sentenceMaker = {}
-      store.sentenceMaker.currentSentenceId = data.sentence.id
-      return gameplayEvents.makeSentenceWords(data, 1, true)
-    })
-    .then((data) => {
-      return gameplayEvents.seededWordLoop(data, store.sentenceMaker.currentSentenceId)
-    })
+    // .then((data) => gameplayEvents.makeSentence(data.game.id))
+    // .then((data) => {
+    //   delete store.sentenceMaker
+    //   store.sentenceMaker = {}
+    //   store.sentenceMaker.currentSentenceId = data.sentence.id
+    //   return gameplayEvents.makeSentenceWords(data, 1, true)
+    // })
+    // .then((data) => {
+    //   return gameplayEvents.seededWordLoop(data, store.sentenceMaker.currentSentenceId)
+    // })
     // you will need to add some stuff to call sentence words
     .then(ui.createGameSuccess)
     .then(api.indexGames)
@@ -92,14 +92,14 @@ const gameLinkClick = function () {
 
 const addGamesEventListeners = function () {
   $('#content').on('click', '#game-link', gameLinkClick)
-  $('#new-game-button').on('click', gameButtonClick)
-  $('#new-game-form-area').on('submit', '#new-game-form', newGameSubmit)
-  $('#display-all-games').on('click', '.delete-game', deleteGameClick)
-  $('#display-all-games').on('click', '.update-game', updateGameClick)
-  $('#display-all-games').on('click', '.nvm', onNvmClick)
-  $('#display-all-games').on('click', '.cnfrm', onCnfrmClick)
-  $('#display-all-games').on('submit', '.update-game-form', onEditSubmit)
-  $('#display-all-games').on('click', '.play-game', onPlayClick)
+  $('#content').on('click', '#new-game-button', gameButtonClick)
+  $('#content').on('submit', '#new-game-form', newGameSubmit)
+  $('#content').on('click', '.delete-game', deleteGameClick)
+  $('#content').on('click', '.update-game', updateGameClick)
+  $('#content').on('click', '.nvm', onNvmClick)
+  $('#content').on('click', '.cnfrm', onCnfrmClick)
+  $('#content').on('submit', '.update-game-form', onEditSubmit)
+  $('#content').on('click', '.play-game', onPlayClick)
 }
 
 module.exports = {

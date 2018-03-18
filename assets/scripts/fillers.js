@@ -8,18 +8,10 @@ const signInTemplate = require('./templates/sign-in-form.handlebars')
 const signUpTemplate = require('./templates/sign-up-form.handlebars')
 const manyGamesTemplate = require('./templates/many-games.handlebars')
 const indexGamesTemplate = require('./templates/index-games.handlebars')
+const newGameTemplate = require('./templates/new-game.handlebars')
+const updateGameTemplate = require('./templates/update-game.handlebars')
 
 const refresh = function () {
-  // $('#intro').hide()
-  // $('#navigation').hide()
-  // $('#instructions').hide()
-  // $('#change-password').hide()
-  // $('#many-games').hide()
-  // $('#user-message').html('')
-  // $('#sign-forms').html('')
-  // $('#new-game-form-area').html('')
-  // $('#mnemonic-title').html('')
-  // $('#one-game').hide()
   $('#content').html('')
 }
 
@@ -119,33 +111,31 @@ const showChangePass = function () {
 }
 
 const showUpdateField = function (game, gameValue, id) {
-  const inputHtml = (`
-    <form class="update-game-form" data-id="${id}">
-        <input type="text" name="game[mnemonic]" style="max-width: 200px" value="${gameValue}">
-    </form>
-    `)
-  const confirmHtml = (`
-    <span data-id="${id}" class="cnfrm">CNFRM</span>
-    `)
-  const nevermindHtml = (`
-      <span data-id="${id}" class="nvm">NVM</span>
-      `)
+  // const inputHtml = (`
+  //   <form class="update-game-form" data-id="${id}">
+  //       <input type="text" name="game[mnemonic]" style="max-width: 200px" value="${gameValue}">
+  //   </form>
+  //   `)
+  // const confirmHtml = (`
+  //   <span data-id="${id}" class="cnfrm">CNFRM</span>
+  //   `)
+  // const nevermindHtml = (`
+  //     <span data-id="${id}" class="nvm">NVM</span>
+  //     `)
+  const gameData = {
+    id: id,
+    mnemonic: gameValue
+  }
+  const inputHtml = updateGameTemplate({'game': gameData})
   $(game).siblings('.mnemonic').html(inputHtml)
   $(game).siblings('.delete-game').hide()
   $(game).hide()
-  $(game).parent().append(confirmHtml)
-  $(game).parent().append(nevermindHtml)
+  // $(game).parent().append(confirmHtml)
+  // $(game).parent().append(nevermindHtml)
 }
 
 const showNewGameForm = function () {
-  const newGameHtml = (`
-    <form id="new-game-form">
-      <div class="center">
-        <input type="text" name="game[mnemonic]" placeholder="NICKNAME FOR THIS GAME" class="input-field">
-      </div>
-      <button class="little-button" id="new-game-form-button">CONFIRM</button>
-    </form>
-    `)
+  const newGameHtml = newGameTemplate()
   $('#new-game-form-area').html(newGameHtml)
 }
 
