@@ -47,10 +47,12 @@ const storyProgress = function (event) {
   const sentenceArray = stripPreviousSentence()
   // Expect sentenceArray to be a copy of the game's sentences, with htm tags removed.
   const redactedSentence = redactSentence(sentenceArray[sentenceArray.length - 1], step.redaction)
+  // Removes the html tagged version of the previous sentence.
   sentenceArray.pop()
+  // Adds a version without tags and with redaction.
   sentenceArray.push(redactedSentence)
-  sentenceArray.push(step.sentence)
   // Pushes the newest sentence on to the array.
+  sentenceArray.push(step.sentence)
   store.currentGame.sentences = sentenceArray
   // Adjusts hope and wisdom according to the step.
   store.currentGame.hope += step.hopemodifier

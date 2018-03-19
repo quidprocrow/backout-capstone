@@ -1,9 +1,10 @@
 
 const getNextSteps = function (stepNumber) {
   const nextStep = {}
+  // Each iteration of the next step object is expected to have
+  // a sentence, a redaction array, and modifiers for hope and wisdom.
   switch (stepNumber) {
     case 1:
-    // need to add a redaction array, a sentence, and hope and wisdom modifiers
       nextStep.sentence = 'First <span class="clickable" data-id="3">sentence</span>.'
       nextStep.redaction = [1, 2, 3, 5]
       nextStep.hopemodifier = 10
@@ -18,8 +19,8 @@ const getNextSteps = function (stepNumber) {
     default:
       nextStep.sentence = 'It worked!'
       nextStep.redaction = [0, 2, 3, 4]
-      nextStep.hopemodifier = -10
-      nextStep.wisdommodifier = 25
+      nextStep.hopemodifier = -100
+      nextStep.wisdommodifier = 0
       break
   }
   return nextStep
