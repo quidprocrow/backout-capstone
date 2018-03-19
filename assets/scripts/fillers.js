@@ -47,25 +47,31 @@ const showManyGames = function () {
 
 const storyFill = function (data) {
   const story = ['<p class="justify">']
-  const neatSentences = store.currentGame.words.sort(function (a, b) {
-    if (a.seedid < b.seedid) {
-      return -1
-    } else if (a.seedid > b.seedid) {
-      return 1
-    } else {
-      return 0
-    }
-  })
-  neatSentences.forEach((word) => {
-    if (word.clickable === true) {
-      const palimpsest = '<span class="clickable" data-id="' + word.seedstep + '" data-sentence-id="' + word.sentence_id + '" data-game-id="' + store.currentGame.id + '">' + word.text + '</span>'
-      story.push(palimpsest)
-    } else if (word.redacted === true) {
-      const palimpsest = '<span class="redacted">' + word.text + '</span>'
-      story.push(palimpsest)
-    } else {
-      story.push(word.text)
-    }
+  // This is a sorting function used when games owned sentences which owned words.
+  // Keeping it for now.
+  //
+  // const neatSentences = store.currentGame.words.sort(function (a, b) {
+  //   if (a.seedid < b.seedid) {
+  //     return -1
+  //   } else if (a.seedid > b.seedid) {
+  //     return 1
+  //   } else {
+  //     return 0
+  //   }
+  // })
+  // neatSentences.forEach((word) => {
+  //   if (word.clickable === true) {
+  //     const palimpsest = '<span class="clickable" data-id="' + word.seedstep + '" data-sentence-id="' + word.sentence_id + '" data-game-id="' + store.currentGame.id + '">' + word.text + '</span>'
+  //     story.push(palimpsest)
+  //   } else if (word.redacted === true) {
+  //     const palimpsest = '<span class="redacted">' + word.text + '</span>'
+  //     story.push(palimpsest)
+  //   } else {
+  //     story.push(word.text)
+  //   }
+  // })
+  data.game.sentences.forEach((sentence) => {
+    story.push(sentence)
   })
   story.push('</p>')
   const neatHtml = story.join(' ')
@@ -82,6 +88,7 @@ const showOneGame = function (data) {
   $('#wisdom-bar-percentage').css('width', (data.game.wisdom + '%'))
   $('#hope-bar-percentage').css('width', (data.game.hope + '%'))
   storyFill(data)
+  console.log(data)
 }
 
 const showIntro = function () {

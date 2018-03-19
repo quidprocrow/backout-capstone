@@ -2,8 +2,8 @@
 // const getFormFields = require('../../../lib/get-form-fields.js')
 // const ui = require('./ui.js')
 const store = require('../store.js')
-const seedApi = require('./seeds/api.js')
-const api = require('./api.js')
+// const seedApi = require('./seeds/api.js')
+// const api = require('./api.js')
 const gameApi = require('../games/api.js')
 const gameUi = require('../games/ui.js')
 

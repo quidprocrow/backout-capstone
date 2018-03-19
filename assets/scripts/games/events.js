@@ -3,8 +3,6 @@ const getFormFields = require('../../../lib/get-form-fields.js')
 const api = require('./api.js')
 const ui = require('./ui.js')
 const store = require('../store.js')
-const gameplayEvents = require('../gameplay/events.js')
-// const seedApi = require('../gameplay/seeds/api.js')
 
 const onPlayClick = function (event) {
   const id = $(event.target).data('id')
@@ -60,20 +58,9 @@ const newGameSubmit = function (event) {
   data.game.hope = 75
   data.game.wisdom = 50
   data.game.user_id = store.user.id
+  data.game.sentences = ['This is it: the end. <span class="clickable" data-id="1">You</span> were <span class="clickable" data-id="2">wrong</span>.']
   data = JSON.stringify(data)
   api.createGame(data)
-    // .then((data) => gameplayEvents.makeSentence(data.game.id))
-    // .then((data) => {
-    //   delete store.sentenceMaker
-    //   store.sentenceMaker = {}
-    //   store.sentenceMaker.currentSentenceId = data.sentence.id
-    //   return gameplayEvents.makeSentenceWords(data, 1, true)
-    // })
-    // .then((data) => {
-    //   return gameplayEvents.seededWordLoop(data, store.sentenceMaker.currentSentenceId)
-    // })
-    // you will need to add some stuff to call sentence words
-    .then(ui.createGameSuccess)
     .then(api.indexGames)
     .then(ui.indexGamesSuccess)
     .catch(ui.createGameFailure)
