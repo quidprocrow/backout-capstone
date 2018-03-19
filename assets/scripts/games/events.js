@@ -61,6 +61,7 @@ const newGameSubmit = function (event) {
   data.game.sentences = ['This is it: the end. <span class="clickable" data-id="1">You</span> were <span class="clickable" data-id="2">wrong</span>.']
   data = JSON.stringify(data)
   api.createGame(data)
+    .then(ui.createGameSuccess)
     .then(api.indexGames)
     .then(ui.indexGamesSuccess)
     .catch(ui.createGameFailure)
