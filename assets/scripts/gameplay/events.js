@@ -2,16 +2,27 @@ const getNextSteps = require('./next-steps.js')
 const store = require('../store.js')
 const striptags = require('striptags')
 const api = require('../games/api.js')
-// const ui = require('../games/ui.js')
+const ui = require('../games/ui.js')
 
 const redactSentence = function (sentence, redactionArray) {
   // Expects a sentence as a string and an array.
   const sentenceArray = sentence.split(' ')
-  redactionArray.forEach(
-    sentenceArray.forEach(
-      // compare the value of the redaction array to the indexes of the sentence array
-    )
-  )
+  // Check that the redaction array actually specifies to redact something.
+  if (redactionArray.length > 0) {
+    // For each index listed in the redaction array ...
+    redactionArray.forEach((redact) => {
+      sentenceArray.forEach((word) => {
+        // ... check to see if the index of the word matches that index.
+        const wordNumber = sentenceArray.indexOf(word)
+        if (wordNumber === redact) {
+          // if so, redact it.
+          sentenceArray[wordNumber] = '<span class="redacted">' + word + '</span>'
+        }
+      })
+    })
+  }
+  // Return the sentence with newly redacted bits.
+  return sentenceArray.join(' ')
 }
 
 const stripPreviousSentence = function () {
@@ -35,6 +46,9 @@ const storyProgress = function (event) {
   const step = getNextSteps(stepId)
   const sentenceArray = stripPreviousSentence()
   // Expect sentenceArray to be a copy of the game's sentences, with htm tags removed.
+  const redactedSentence = redactSentence(sentenceArray[sentenceArray.length - 1], step.redaction)
+  sentenceArray.pop()
+  sentenceArray.push(redactedSentence)
   sentenceArray.push(step.sentence)
   // Pushes the newest sentence on to the array.
   store.currentGame.sentences = sentenceArray
@@ -46,8 +60,8 @@ const storyProgress = function (event) {
     game: store.currentGame
   }
   api.updateGame(data)
-    .then(console.log)
-    .catch(console.error)
+    .then(ui.showGameSuccess)
+    .catch(ui.showGameFailure)
 }
 
 const addGameplayEventListeners = function () {
