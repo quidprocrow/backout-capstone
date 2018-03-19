@@ -1,5 +1,6 @@
 const fillers = require('../fillers.js')
 const store = require('../store.js')
+const errorTemplate = require('../templates/error.handlebars')
 
 const showGameSuccess = function (data) {
   delete store.currentGame
@@ -12,11 +13,7 @@ const showGameSuccess = function (data) {
 }
 
 const showGameFailure = function () {
-  const errorHtml = (`
-    <p class="message">
-    <b>Hmm.<b/> Something went wrong.
-    </p>
-    `)
+  const errorHtml = errorTemplate()
   $('#user-message').html(errorHtml)
 }
 
@@ -34,11 +31,7 @@ const indexGamesSuccess = function (data) {
 }
 
 const indexGamesFailure = function () {
-  const errorHtml = (`
-    <p class="message">
-    HMM. Something went wrong.
-    </p>
-    `)
+  const errorHtml = errorTemplate()
   $('#user-message').html(errorHtml)
 }
 
@@ -47,12 +40,8 @@ const createGameSuccess = function (data) {
 }
 
 const createGameFailure = function (data) {
-  const errorHtml = (`
-    <p class="message">
-    <b>Hmm.<b/> Something went wrong.
-    </p>
-    `)
-  $('#new-game-form-area').html(errorHtml)
+  const errorHtml = errorTemplate()
+  $('#user-message').html(errorHtml)
 }
 
 module.exports = {
