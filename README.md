@@ -14,13 +14,18 @@ backOut is a story game, inspired by black out poetry and the choose your own ad
 - Ruby on Rails
 - AJAX
 - PostGresSQL
+- [StripTags Node Package](https://www.npmjs.com/package/striptags)
 
 ## Planning process
 I planned to write a choose your own adventure, where particular sentences would be displayed as a result of a players selecting a certain clickable word -- and words would be redacted on the basis of that same choice, with the game's hope and wisdom stats reflecting consequences. To do this, I thought I needed to have sentences that owned words, with words having keys for their clickability and whether or not they were redacted, as well as a link to the next step.
 
 
 ## Future Improvements
-I have not reached what I would consider the core functionality of the application: the ability to see an evolving story. At present, I believe I was a bit foolish in my reliance on the backend to the extent that I did; in order to be able to display redacted words in a story, I had users that owned sentences that owned words that owned steps, with the 'story' living in seeded equivalent tables. This made for an incredible burden on JS promises. I need to streamline the number of requests; I'm considering eliminating the seeded components on the backend and simply having a javasript object representing possible sentences, with a switch conditional directing to the appropriate sentence.
+In V1, I was able to make all the necessary requests by having the application depend heavily on the backend. Though I was able to write the code to redact as it was, the free level of heroku can only make 100 requests per minute -- and I was making at least that when I was adding redaction to each word and removing clickability, then updating them all.
+
+In V2, I shifted my emphasis to the front end. Though user's still own games, games only have a column of sentences expecting strings in an array -- rather than games owning sentences, which owned words, which referenced seeded steps, which referenced seeded sentences, which owned seeded words. (See? Much cleaner!)
+
+In V3, I want to further refine the front end to make it more modular. Currently the game depends on an expansive switch case, which is difficult to track.
 
 
 ## User stories
@@ -47,7 +52,6 @@ https://www.lucidchart.com/invitations/accept/e9ef0c1e-0bc6-47b3-ac72-70ab93b7fe
 
 ## WIREFREAMES
 https://ibb.co/dBfdF7
-
 
 
 
