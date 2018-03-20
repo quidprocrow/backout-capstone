@@ -17,7 +17,7 @@ const getNextSteps = function (stepNumber) {
       nextStep.wisdommodifier = 0
       break
     case 4:
-      nextStep.sentence = 'surely. Bertram <span class="clickable" data-id="6">laughed</span> about dying while still in the village, since avoiding dying there with untold ancestors just amounted to a walk, and so certainly you <span class="clickable" data-id="7">both</span> could manage that little. He hadn\'t.'
+      nextStep.sentence = 'surely. Bertram <span class="clickable" data-id="6">laughed</span> about death while still in the village, since avoiding dying there with untold ancestors just amounted to a walk, and so certainly you <span class="clickable" data-id="7">both</span> could manage that little. He hadn\'t.'
       nextStep.redaction = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 21, 22, 23, 24]
       nextStep.hopemodifier = -20
       nextStep.wisdommodifier = 10
@@ -25,6 +25,12 @@ const getNextSteps = function (stepNumber) {
     case 6:
       nextStep.sentence = 'You <span class="clickable" data-id="8">both</span> really had nothing to <span class="clickable" data-id="9">lose</span> there.'
       nextStep.redaction = [5, 6, 7, 8, 9, 11, 13, 14, 15, 16, 17, 20, 21, 22, 24, 25, 26, 27, 28, 29, 31, 32, 33, 34, 35]
+      nextStep.hopemodifier = -20
+      nextStep.wisdommodifier = 10
+      break
+    case 7:
+      nextStep.sentence = ' WHAT'
+      nextStep.redaction = [0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 26, 27, 28, 29, 30, 31]
       nextStep.hopemodifier = -20
       nextStep.wisdommodifier = 10
       break

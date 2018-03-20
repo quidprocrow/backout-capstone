@@ -74,6 +74,8 @@ const showOneGame = function (data) {
   $('#mnemonic-title').html(data.game.mnemonic)
   $('#wisdom-bar-percentage').css('width', (data.game.wisdom + '%'))
   $('#hope-bar-percentage').css('width', (data.game.hope + '%'))
+  $('#hope-bar').attr('alt', (data.game.hope + '%'))
+  $('#wisdom-bar').attr('alt', (data.game.wisdom + '%'))
   storyFill(data)
   gameOverCheck()
 }
