@@ -11,6 +11,7 @@ const indexGamesTemplate = require('./templates/index-games.handlebars')
 const newGameTemplate = require('./templates/new-game.handlebars')
 const updateGameTemplate = require('./templates/update-game.handlebars')
 const oneGameTemplate = require('./templates/one-game.handlebars')
+const gameOverTemplate = require('./templates/game-over.handlebars')
 
 const refresh = function () {
   $('#content').html('')
@@ -23,6 +24,15 @@ const greeting = function () {
     $('.user-greeting').html(userGreet[0]).css('text-transform', 'uppercase')
   } else {
     $('.user-greeting').html('HELLO').css('text-transform', 'uppercase')
+  }
+}
+
+const gameOverCheck = function () {
+  const endHtml = gameOverTemplate()
+  if (store.currentGame.hope <= 0) {
+    $('#user-message').html(endHtml)
+  } else if (store.currentGame.wisdom >= 100) {
+    $('#user-message').html(endHtml)
   }
 }
 
@@ -47,29 +57,6 @@ const showManyGames = function () {
 
 const storyFill = function (data) {
   const story = ['<p class="justify">']
-  // This is a sorting function used when games owned sentences which owned words.
-  // Keeping it for now.
-  //
-  // const neatSentences = store.currentGame.words.sort(function (a, b) {
-  //   if (a.seedid < b.seedid) {
-  //     return -1
-  //   } else if (a.seedid > b.seedid) {
-  //     return 1
-  //   } else {
-  //     return 0
-  //   }
-  // })
-  // neatSentences.forEach((word) => {
-  //   if (word.clickable === true) {
-  //     const palimpsest = '<span class="clickable" data-id="' + word.seedstep + '" data-sentence-id="' + word.sentence_id + '" data-game-id="' + store.currentGame.id + '">' + word.text + '</span>'
-  //     story.push(palimpsest)
-  //   } else if (word.redacted === true) {
-  //     const palimpsest = '<span class="redacted">' + word.text + '</span>'
-  //     story.push(palimpsest)
-  //   } else {
-  //     story.push(word.text)
-  //   }
-  // })
   data.game.sentences.forEach((sentence) => {
     story.push(sentence)
   })
@@ -88,7 +75,7 @@ const showOneGame = function (data) {
   $('#wisdom-bar-percentage').css('width', (data.game.wisdom + '%'))
   $('#hope-bar-percentage').css('width', (data.game.hope + '%'))
   storyFill(data)
-  console.log(data)
+  gameOverCheck()
 }
 
 const showIntro = function () {
